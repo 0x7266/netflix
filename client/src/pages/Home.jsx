@@ -8,28 +8,36 @@ export default function Home() {
   const [documentaries, setDocumentaries] = useState();
 
   async function getMovies() {
-    const response = await fetch("/api/movies");
+    const response = await fetch(
+      "https://netflix-njma.onrender.com/api/movies"
+    );
     const data = await response.json();
     console.log(data);
     setMovies(data);
   }
 
   async function getDramas() {
-    const response = await fetch("/api/movies?genre=Drama");
+    const response = await fetch(
+      "https://netflix-njma.onrender.com/api/movies?genre=Drama"
+    );
     const data = await response.json();
     console.log(data);
     setDramas(data);
   }
 
   async function getSeries() {
-    const response = await fetch("/api/series?page=4");
+    const response = await fetch(
+      "https://netflix-njma.onrender.com/api/series?page=4"
+    );
     const data = await response.json();
     console.log(data);
     setSeries(data);
   }
 
   async function getDocumentaries() {
-    const response = await fetch("/api/movies?genre=Documentary&page=10");
+    const response = await fetch(
+      "https://netflix-njma.onrender.com/api/movies?genre=Documentary&page=10"
+    );
     const data = await response.json();
     console.log(data);
     setDocumentaries(data);

@@ -8,7 +8,7 @@ function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <div className="flex flex-col gap-5 bg-neutral-900 py-5">
+    <div className="flex flex-col gap-5 bg-neutral-900 py-5 min-h-screen">
       <BrowserRouter>
         <Navbar />
 
