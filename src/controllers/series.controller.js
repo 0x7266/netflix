@@ -1,7 +1,7 @@
 const Movie = require("../models/movie.model");
 
 module.exports = {
-  getMovies: async (req, res) => {
+  getSeries: async (req, res) => {
     try {
       const page = parseInt(req.query.page) - 1 || 0;
       const limit = parseInt(req.query.limit) || 10;
@@ -49,8 +49,9 @@ module.exports = {
       } else {
         sortBy[sort[0]] = "asc";
       }
-      const movies = await Movie.find({
+      const series = await Movie.find({
         title: { $regex: search, $options: "i" },
+        type: "series",
       })
         .where("genres")
         .in([...genre])
@@ -71,7 +72,7 @@ module.exports = {
         page: page + 1,
         limit,
         genres,
-        movies,
+        series,
       };
       res.json(response);
     } catch (error) {
@@ -79,7 +80,7 @@ module.exports = {
       res.status(404).send(error);
     }
   },
-  getMovieById: async (req, res) => {
+  getSerieById: async (req, res) => {
     try {
       const response = await Movie.findById(req.params._id);
       res.json(response);
@@ -88,7 +89,7 @@ module.exports = {
       res.status(404).send(error);
     }
   },
-  getMovieByTitle: async (req, res) => {
+  getSerieByTitle: async (req, res) => {
     try {
       const response = await Movie.findOne({ title: req.params.title });
       res.json(response);
